@@ -1,5 +1,5 @@
 //
-//  CameraWatcher.swift
+//  MonitoredWatcher.swift
 //  Monitored.framework
 //
 //  Created by Gergely Sánta on 20/06/2020.
@@ -15,13 +15,12 @@
 // and isRunningSomewhereDidChange to update internal state, and to detect when the microphone is in use somewhere.
 // I hope that's enough information to get you started, comments are only so long.
 
-import Cocoa
 import CoreMediaIO
 
-public final class CameraWatcher {
+public final class MonitoredWatcher {
 
     /// Singleton instance
-    public static let shared = CameraWatcher()
+    public static let shared = MonitoredWatcher()
 
     /// Object which receives camera state change reports
     public weak var delegate: CameraDeviceDelegate? {
