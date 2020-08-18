@@ -6,21 +6,10 @@
 //  Copyright © 2020 Gergely Sánta. All rights reserved.
 //
 
+// Inspired by:
+// https://github.com/johnboiles/coremediaio-dal-minimal-example/blob/master/CMIOMinimalSample/Device.mm
+
 import CoreMediaIO
-
-public protocol CameraDeviceDelegate: AnyObject {
-
-    /// Delegate method sent when camera device state was changed
-    /// - Parameters:
-    ///   - camera: camera device
-    ///   - enabled: new state
-    func cameraDevice(_ device: CameraDevice, stateChangedTo enabled: Bool)
-
-}
-
-extension CameraDeviceDelegate {
-    func cameraDevice(_ device: CameraDevice, stateChangedTo enabled: Bool) { }
-}
 
 public class CameraDevice {
 
@@ -55,7 +44,52 @@ public class CameraDevice {
     internal var propertyWatcher: (CMIOObjectPropertyAddress, CMIOObjectPropertyListenerBlock)?
 
     /// Object which receives camera state change reports
-    public weak var delegate: CameraDeviceDelegate?
+    public weak var delegate: MonitoredDelegate?
+
+    /// Get array of camera devices in the system
+    /// - Returns: array of camera devices
+    static public func getDevices(delegatingTo delegate: MonitoredDelegate?) -> [CameraDevice] {
+        var newDevices: [CameraDevice] = []
+
+        var deviceRefs: UnsafeMutableRawPointer? = nil
+        var dataSize: UInt32 = 0
+        var dataUsed: UInt32 = 0
+        var opResult: OSStatus = 0
+
+        // 1. Get all camera devices
+
+        // Get data size required for device list
+        var propertyAddress = CMIOObjectPropertyAddress(
+            mSelector: CMIOObjectPropertySelector(kCMIOHardwarePropertyDevices),
+            mScope: CMIOObjectPropertyScope(kCMIOObjectPropertyScopeGlobal),
+            mElement: CMIOObjectPropertyElement(kCMIOObjectPropertyElementMaster)
+        )
+        _ = CMIOObjectGetPropertyDataSize(CMIOObjectID(kCMIOObjectSystemObject), &propertyAddress, 0, nil, &dataSize)
+
+        // We need to wait until we get some data
+        repeat {
+            if deviceRefs != nil {
+                free(deviceRefs)
+                deviceRefs = nil
+            }
+            deviceRefs = malloc(Int(dataSize))
+            opResult = CMIOObjectGetPropertyData(CMIOObjectID(kCMIOObjectSystemObject), &propertyAddress, 0, nil, dataSize, &dataUsed, deviceRefs);
+        } while opResult == OSStatus(kCMIOHardwareBadPropertySizeError)
+
+        // Get device IDs from unsafe pointer array
+        if let devices = deviceRefs {
+            for offset in stride(from: 0, to: dataSize, by: MemoryLayout<CMIOObjectID>.size) {
+                let current = devices.advanced(by: Int(offset)).assumingMemoryBound(to: CMIOObjectID.self)
+
+                let device = CameraDevice(withId: current.pointee)
+                device.delegate = delegate
+                newDevices.append(device)
+            }
+        }
+        free(deviceRefs)
+
+        return newDevices
+    }
 
     /// Method called when a property changes
     /// - Parameters:

@@ -1,5 +1,5 @@
 //
-//  CameraProperty.swift
+//  CameraDevice+Property.swift
 //  Monitored.framework
 //
 //  Created by Gergely Sánta on 30/06/2020.

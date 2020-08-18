@@ -1,4 +1,4 @@
-Monitored is a macOS framework for detecting when you're being monitored. Actually supports only camra detection.
+Monitored is a macOS framework for detecting when you're being monitored. Actually supports only camera and speaker detection (microphones TBD).
 
 ## Installation
 
@@ -23,14 +23,24 @@ Run `carthage` to build the framework and drag the built `Monitored.framework` i
 
 ## Usage
 
-Monitored provides a singleton object for monitoring events from camera. Just set it up to delegate events to your object and start the watcher:
+Monitored provides a singleton object for monitoring events from camera and from speakers. Just set it up to delegate events to your object and start the watcher:
 
 ```swift
 MonitoredWatcher.shared.delegate = self
-MonitoredWatcher.shared.watchDevices = true
+MonitoredWatcher.shared.start()
 ```
 
-You'll receive camera state reports through `CameraDeviceDelegate` delegate methods.
+You'll receive camera and speaker state reports through `MonitoredDelegate` delegate methods:
+
+```swift
+func cameraDevice(_ device: CameraDevice, stateChangedTo enabled: Bool) {
+    NSLog("Camera: \(device.name) -> \(enabled ? "ON" : "OFF")")
+}
+
+func speakerDevice(_ device: SpeakerDevice, stateChangedTo enabled: Bool) {
+    NSLog("Speaker: \(device.name) -> \(enabled ? "ON" : "OFF")")
+}
+```
 
 ## License
 

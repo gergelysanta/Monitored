@@ -16,8 +16,12 @@
 		ECCA0B1024C3669400A068E1 /* CameraDevice+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCA0B0A24C3669400A068E1 /* CameraDevice+Location.swift */; };
 		ECCA0B1124C3669400A068E1 /* CameraDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCA0B0B24C3669400A068E1 /* CameraDevice.swift */; };
 		ECCA0B1224C3669400A068E1 /* CameraDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCA0B0B24C3669400A068E1 /* CameraDevice.swift */; };
-		ECCA0B1324C3669400A068E1 /* MonitoredWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCA0B0C24C3669400A068E1 /* MonitoredWatcher.swift */; };
-		ECCA0B1424C3669400A068E1 /* MonitoredWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCA0B0C24C3669400A068E1 /* MonitoredWatcher.swift */; };
+		ECEE46E424EBB7C900D07BD4 /* MonitoredWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEE46E324EBB7C900D07BD4 /* MonitoredWatcher.swift */; };
+		ECEE46E524EBB7C900D07BD4 /* MonitoredWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEE46E324EBB7C900D07BD4 /* MonitoredWatcher.swift */; };
+		ECEE46E924EBB7D500D07BD4 /* SpeakerDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEE46E724EBB7D500D07BD4 /* SpeakerDevice.swift */; };
+		ECEE46EA24EBB7D500D07BD4 /* SpeakerDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEE46E724EBB7D500D07BD4 /* SpeakerDevice.swift */; };
+		ECEE46EB24EBB7D500D07BD4 /* SpeakerDevice+Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEE46E824EBB7D500D07BD4 /* SpeakerDevice+Property.swift */; };
+		ECEE46EC24EBB7D500D07BD4 /* SpeakerDevice+Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEE46E824EBB7D500D07BD4 /* SpeakerDevice+Property.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +44,11 @@
 		ECCA0B0924C3669400A068E1 /* CameraDevice+Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CameraDevice+Property.swift"; sourceTree = "<group>"; };
 		ECCA0B0A24C3669400A068E1 /* CameraDevice+Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CameraDevice+Location.swift"; sourceTree = "<group>"; };
 		ECCA0B0B24C3669400A068E1 /* CameraDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraDevice.swift; sourceTree = "<group>"; };
-		ECCA0B0C24C3669400A068E1 /* MonitoredWatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitoredWatcher.swift; sourceTree = "<group>"; };
+		ECEE46E324EBB7C900D07BD4 /* MonitoredWatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitoredWatcher.swift; sourceTree = "<group>"; };
+		ECEE46E724EBB7D500D07BD4 /* SpeakerDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerDevice.swift; sourceTree = "<group>"; };
+		ECEE46E824EBB7D500D07BD4 /* SpeakerDevice+Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SpeakerDevice+Property.swift"; sourceTree = "<group>"; };
+		ECEE46ED24EBB82D00D07BD4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		ECEE46EE24EBB83D00D07BD4 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				ECCA0AF024C3661000A068E1 /* Monitored */,
+				ECEE46ED24EBB82D00D07BD4 /* README.md */,
+				ECEE46EE24EBB83D00D07BD4 /* LICENSE */,
 				ECCA0AFB24C3661000A068E1 /* MonitoredTests */,
 				ECCA0AEF24C3661000A068E1 /* Products */,
 			);
@@ -83,9 +93,11 @@
 		ECCA0AF024C3661000A068E1 /* Monitored */ = {
 			isa = PBXGroup;
 			children = (
+				ECEE46E324EBB7C900D07BD4 /* MonitoredWatcher.swift */,
 				ECCA0AF124C3661000A068E1 /* Monitored.h */,
 				ECCA0AF224C3661000A068E1 /* Info.plist */,
 				ECCA0B0824C3669400A068E1 /* Camera */,
+				ECEE46E624EBB7D500D07BD4 /* Speaker */,
 			);
 			path = Monitored;
 			sourceTree = "<group>";
@@ -102,12 +114,20 @@
 		ECCA0B0824C3669400A068E1 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				ECCA0B0C24C3669400A068E1 /* MonitoredWatcher.swift */,
 				ECCA0B0B24C3669400A068E1 /* CameraDevice.swift */,
 				ECCA0B0924C3669400A068E1 /* CameraDevice+Property.swift */,
 				ECCA0B0A24C3669400A068E1 /* CameraDevice+Location.swift */,
 			);
 			path = Camera;
+			sourceTree = "<group>";
+		};
+		ECEE46E624EBB7D500D07BD4 /* Speaker */ = {
+			isa = PBXGroup;
+			children = (
+				ECEE46E724EBB7D500D07BD4 /* SpeakerDevice.swift */,
+				ECEE46E824EBB7D500D07BD4 /* SpeakerDevice+Property.swift */,
+			);
+			path = Speaker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +148,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ECCA0B0224C3661000A068E1 /* Build configuration list for PBXNativeTarget "Monitored" */;
 			buildPhases = (
+				ECEE46EF24EBBA7200D07BD4 /* Increase build number */,
 				ECCA0AE924C3661000A068E1 /* Headers */,
 				ECCA0AEA24C3661000A068E1 /* Sources */,
 				ECCA0AEB24C3661000A068E1 /* Frameworks */,
@@ -214,15 +235,38 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		ECEE46EF24EBBA7200D07BD4 /* Increase build number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Increase build number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PLIST=\"${PROJECT_DIR}/${INFOPLIST_FILE}\"\nPLB=/usr/libexec/PlistBuddy\nLAST_NUMBER=$($PLB -c \"Print CFBundleVersion\" \"$PLIST\")\nNEW_VERSION=$(($LAST_NUMBER + 1))\n$PLB -c \"Set :CFBundleVersion $NEW_VERSION\" \"$PLIST\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		ECCA0AEA24C3661000A068E1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECEE46EB24EBB7D500D07BD4 /* SpeakerDevice+Property.swift in Sources */,
+				ECEE46E424EBB7C900D07BD4 /* MonitoredWatcher.swift in Sources */,
 				ECCA0B0D24C3669400A068E1 /* CameraDevice+Property.swift in Sources */,
-				ECCA0B1324C3669400A068E1 /* MonitoredWatcher.swift in Sources */,
 				ECCA0B0F24C3669400A068E1 /* CameraDevice+Location.swift in Sources */,
 				ECCA0B1124C3669400A068E1 /* CameraDevice.swift in Sources */,
+				ECEE46E924EBB7D500D07BD4 /* SpeakerDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,10 +274,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECCA0B1424C3669400A068E1 /* MonitoredWatcher.swift in Sources */,
 				ECCA0AFD24C3661000A068E1 /* MonitoredTests.swift in Sources */,
 				ECCA0B0E24C3669400A068E1 /* CameraDevice+Property.swift in Sources */,
 				ECCA0B1224C3669400A068E1 /* CameraDevice.swift in Sources */,
+				ECEE46EC24EBB7D500D07BD4 /* SpeakerDevice+Property.swift in Sources */,
+				ECEE46EA24EBB7D500D07BD4 /* SpeakerDevice.swift in Sources */,
+				ECEE46E524EBB7C900D07BD4 /* MonitoredWatcher.swift in Sources */,
 				ECCA0B1024C3669400A068E1 /* CameraDevice+Location.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
