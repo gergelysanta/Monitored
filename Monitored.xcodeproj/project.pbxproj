@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC3603F924FC2CB6009D8380 /* MicrophoneDevice+Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3603F724FC2CB6009D8380 /* MicrophoneDevice+Property.swift */; };
+		EC3603FA24FC2CB6009D8380 /* MicrophoneDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3603F824FC2CB6009D8380 /* MicrophoneDevice.swift */; };
 		ECCA0AF824C3661000A068E1 /* Monitored.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECCA0AEE24C3661000A068E1 /* Monitored.framework */; };
 		ECCA0AFD24C3661000A068E1 /* MonitoredTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCA0AFC24C3661000A068E1 /* MonitoredTests.swift */; };
 		ECCA0AFF24C3661000A068E1 /* Monitored.h in Headers */ = {isa = PBXBuildFile; fileRef = ECCA0AF124C3661000A068E1 /* Monitored.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -18,10 +20,6 @@
 		ECCA0B1224C3669400A068E1 /* CameraDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCA0B0B24C3669400A068E1 /* CameraDevice.swift */; };
 		ECEE46E424EBB7C900D07BD4 /* MonitoredWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEE46E324EBB7C900D07BD4 /* MonitoredWatcher.swift */; };
 		ECEE46E524EBB7C900D07BD4 /* MonitoredWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEE46E324EBB7C900D07BD4 /* MonitoredWatcher.swift */; };
-		ECEE46E924EBB7D500D07BD4 /* SpeakerDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEE46E724EBB7D500D07BD4 /* SpeakerDevice.swift */; };
-		ECEE46EA24EBB7D500D07BD4 /* SpeakerDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEE46E724EBB7D500D07BD4 /* SpeakerDevice.swift */; };
-		ECEE46EB24EBB7D500D07BD4 /* SpeakerDevice+Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEE46E824EBB7D500D07BD4 /* SpeakerDevice+Property.swift */; };
-		ECEE46EC24EBB7D500D07BD4 /* SpeakerDevice+Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEE46E824EBB7D500D07BD4 /* SpeakerDevice+Property.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC3603F724FC2CB6009D8380 /* MicrophoneDevice+Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MicrophoneDevice+Property.swift"; sourceTree = "<group>"; };
+		EC3603F824FC2CB6009D8380 /* MicrophoneDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrophoneDevice.swift; sourceTree = "<group>"; };
 		ECCA0AEE24C3661000A068E1 /* Monitored.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Monitored.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECCA0AF124C3661000A068E1 /* Monitored.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Monitored.h; sourceTree = "<group>"; };
 		ECCA0AF224C3661000A068E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,8 +45,6 @@
 		ECCA0B0A24C3669400A068E1 /* CameraDevice+Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CameraDevice+Location.swift"; sourceTree = "<group>"; };
 		ECCA0B0B24C3669400A068E1 /* CameraDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraDevice.swift; sourceTree = "<group>"; };
 		ECEE46E324EBB7C900D07BD4 /* MonitoredWatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitoredWatcher.swift; sourceTree = "<group>"; };
-		ECEE46E724EBB7D500D07BD4 /* SpeakerDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerDevice.swift; sourceTree = "<group>"; };
-		ECEE46E824EBB7D500D07BD4 /* SpeakerDevice+Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SpeakerDevice+Property.swift"; sourceTree = "<group>"; };
 		ECEE46ED24EBB82D00D07BD4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		ECEE46EE24EBB83D00D07BD4 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC3603F624FC2CB6009D8380 /* Microphone */ = {
+			isa = PBXGroup;
+			children = (
+				EC3603F724FC2CB6009D8380 /* MicrophoneDevice+Property.swift */,
+				EC3603F824FC2CB6009D8380 /* MicrophoneDevice.swift */,
+			);
+			path = Microphone;
+			sourceTree = "<group>";
+		};
 		ECCA0AE424C3661000A068E1 = {
 			isa = PBXGroup;
 			children = (
@@ -97,7 +104,7 @@
 				ECCA0AF124C3661000A068E1 /* Monitored.h */,
 				ECCA0AF224C3661000A068E1 /* Info.plist */,
 				ECCA0B0824C3669400A068E1 /* Camera */,
-				ECEE46E624EBB7D500D07BD4 /* Speaker */,
+				EC3603F624FC2CB6009D8380 /* Microphone */,
 			);
 			path = Monitored;
 			sourceTree = "<group>";
@@ -119,15 +126,6 @@
 				ECCA0B0A24C3669400A068E1 /* CameraDevice+Location.swift */,
 			);
 			path = Camera;
-			sourceTree = "<group>";
-		};
-		ECEE46E624EBB7D500D07BD4 /* Speaker */ = {
-			isa = PBXGroup;
-			children = (
-				ECEE46E724EBB7D500D07BD4 /* SpeakerDevice.swift */,
-				ECEE46E824EBB7D500D07BD4 /* SpeakerDevice+Property.swift */,
-			);
-			path = Speaker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,12 +259,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECEE46EB24EBB7D500D07BD4 /* SpeakerDevice+Property.swift in Sources */,
 				ECEE46E424EBB7C900D07BD4 /* MonitoredWatcher.swift in Sources */,
 				ECCA0B0D24C3669400A068E1 /* CameraDevice+Property.swift in Sources */,
 				ECCA0B0F24C3669400A068E1 /* CameraDevice+Location.swift in Sources */,
+				EC3603F924FC2CB6009D8380 /* MicrophoneDevice+Property.swift in Sources */,
+				EC3603FA24FC2CB6009D8380 /* MicrophoneDevice.swift in Sources */,
 				ECCA0B1124C3669400A068E1 /* CameraDevice.swift in Sources */,
-				ECEE46E924EBB7D500D07BD4 /* SpeakerDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,8 +275,6 @@
 				ECCA0AFD24C3661000A068E1 /* MonitoredTests.swift in Sources */,
 				ECCA0B0E24C3669400A068E1 /* CameraDevice+Property.swift in Sources */,
 				ECCA0B1224C3669400A068E1 /* CameraDevice.swift in Sources */,
-				ECEE46EC24EBB7D500D07BD4 /* SpeakerDevice+Property.swift in Sources */,
-				ECEE46EA24EBB7D500D07BD4 /* SpeakerDevice.swift in Sources */,
 				ECEE46E524EBB7C900D07BD4 /* MonitoredWatcher.swift in Sources */,
 				ECCA0B1024C3669400A068E1 /* CameraDevice+Location.swift in Sources */,
 			);
@@ -431,6 +427,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gergelysanta.Monitored;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -455,6 +452,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gergelysanta.Monitored;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

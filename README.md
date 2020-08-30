@@ -1,4 +1,25 @@
-Monitored is a macOS framework for detecting when you're being monitored. Actually supports only camera and speaker detection (microphones TBD).
+Monitored is a macOS framework for detecting when you're being monitored. It detect state changes on camera and microphone devices.
+
+## Usage
+
+Monitored provides a singleton object for monitoring events from camera and from microphones. Just set it up to delegate events to your object and start the watcher:
+
+```swift
+MonitoredWatcher.shared.delegate = self
+MonitoredWatcher.shared.start()
+```
+
+You'll receive camera and microphone state reports through `MonitoredDelegate` delegate methods:
+
+```swift
+func cameraDevice(_ device: CameraDevice, stateChangedTo enabled: Bool) {
+    NSLog("Camera: \(device.name) -> \(enabled ? "ON" : "OFF")")
+}
+
+func microphoneDevice(_ device: MicrophoneDevice, stateChangedTo enabled: Bool) {
+    NSLog("Microphone: \(device.name) -> \(enabled ? "ON" : "OFF")")
+}
+```
 
 ## Installation
 
@@ -20,27 +41,6 @@ github "gergelysanta/Monitored"
 ```
 
 Run `carthage` to build the framework and drag the built `Monitored.framework` into your Xcode project.
-
-## Usage
-
-Monitored provides a singleton object for monitoring events from camera and from speakers. Just set it up to delegate events to your object and start the watcher:
-
-```swift
-MonitoredWatcher.shared.delegate = self
-MonitoredWatcher.shared.start()
-```
-
-You'll receive camera and speaker state reports through `MonitoredDelegate` delegate methods:
-
-```swift
-func cameraDevice(_ device: CameraDevice, stateChangedTo enabled: Bool) {
-    NSLog("Camera: \(device.name) -> \(enabled ? "ON" : "OFF")")
-}
-
-func speakerDevice(_ device: SpeakerDevice, stateChangedTo enabled: Bool) {
-    NSLog("Speaker: \(device.name) -> \(enabled ? "ON" : "OFF")")
-}
-```
 
 ## License
 

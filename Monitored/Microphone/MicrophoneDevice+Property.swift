@@ -1,5 +1,5 @@
 //
-//  SpeakerDevice+Property.swift
+//  MicrophoneDevice+Property.swift
 //  Monitored.framework
 //
 //  Created by Gergely Sánta on 17/08/2020.
@@ -8,7 +8,7 @@
 
 import CoreAudio
 
-extension SpeakerDevice {
+extension MicrophoneDevice {
 
     /// CoreAudio property
     public enum Property: Int, CaseIterable {
@@ -67,14 +67,14 @@ extension SpeakerDevice {
             mScope: AudioObjectPropertyScope(kAudioObjectPropertyScopeWildcard),
             mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementWildcard)
         )
-        AudioObjectAddPropertyListenerBlock(self.identifier, &propertyAddress, self.watchSpeakerQueue, listener)
+        AudioObjectAddPropertyListenerBlock(self.identifier, &propertyAddress, self.watchMicrophoneQueue, listener)
         propertyWatcher = (propertyAddress, listener)
     }
 
     internal func unwatch() {
         guard let watcher = propertyWatcher else { return }
         var oldAddress = watcher.0
-        AudioObjectRemovePropertyListenerBlock(self.identifier, &oldAddress, self.watchSpeakerQueue, watcher.1)
+        AudioObjectRemovePropertyListenerBlock(self.identifier, &oldAddress, self.watchMicrophoneQueue, watcher.1)
         propertyWatcher = nil
     }
 

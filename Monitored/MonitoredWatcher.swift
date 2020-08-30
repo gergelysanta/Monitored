@@ -17,17 +17,17 @@ public protocol MonitoredDelegate: AnyObject {
     ///   - enabled: new state
     func cameraDevice(_ device: CameraDevice, stateChangedTo enabled: Bool)
 
-    /// Delegate method sent when speaker device state was changed
+    /// Delegate method sent when microphone device state was changed
     /// - Parameters:
-    ///   - device: speaker device
+    ///   - device: microphone device
     ///   - enabled: new state
-    func speakerDevice(_ device: SpeakerDevice, stateChangedTo enabled: Bool)
+    func microphoneDevice(_ device: MicrophoneDevice, stateChangedTo enabled: Bool)
 
 }
 
 extension MonitoredDelegate {
     func cameraDevice(_ device: CameraDevice, stateChangedTo enabled: Bool) { }
-    func speakerDevice(_ device: SpeakerDevice, stateChangedTo enabled: Bool) { }
+    func microphoneDevice(_ device: MicrophoneDevice, stateChangedTo enabled: Bool) { }
 }
 
 
@@ -39,8 +39,8 @@ public final class MonitoredWatcher {
     /// Dictionary of detected camera devices
     public private(set) var cameraDevices: [CameraDevice] = []
 
-    /// Dictionary of detected speaker devices
-    public private(set) var speakerDevices: [SpeakerDevice] = []
+    /// Dictionary of detected microphone devices
+    public private(set) var microphoneDevices: [MicrophoneDevice] = []
 
     /// Object which receives camera state change reports
     public weak var delegate: MonitoredDelegate? {
@@ -48,8 +48,8 @@ public final class MonitoredWatcher {
             for camera in cameraDevices {
                 camera.delegate = delegate
             }
-            for speaker in speakerDevices {
-                speaker.delegate = delegate
+            for microphone in microphoneDevices {
+                microphone.delegate = delegate
             }
         }
     }
@@ -59,8 +59,8 @@ public final class MonitoredWatcher {
         for camera in cameraDevices {
             camera.isWatched = true
         }
-        for speaker in speakerDevices {
-            speaker.isWatched = true
+        for microphone in microphoneDevices {
+            microphone.isWatched = true
         }
     }
 
@@ -69,15 +69,18 @@ public final class MonitoredWatcher {
         for camera in cameraDevices {
             camera.isWatched = false
         }
-        for speaker in speakerDevices {
-            speaker.isWatched = false
+        for microphone in microphoneDevices {
+            microphone.isWatched = false
         }
     }
 
     /// This is a singleton object accessible through SameraWatcher.shared, creating other instances is not allowed
     private init() {
         cameraDevices = CameraDevice.getDevices(delegatingTo: delegate)
-        speakerDevices = SpeakerDevice.getDevices(delegatingTo: delegate)
+        microphoneDevices = MicrophoneDevice.getDevices(delegatingTo: delegate)
+        for microphoneDevice in microphoneDevices {
+            NSLog("+ \(microphoneDevice.name)")
+        }
     }
 
 }
