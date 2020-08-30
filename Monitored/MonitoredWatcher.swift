@@ -78,9 +78,6 @@ public final class MonitoredWatcher {
     private init() {
         cameraDevices = CameraDevice.getDevices(delegatingTo: delegate)
         microphoneDevices = MicrophoneDevice.getDevices(delegatingTo: delegate)
-        for microphoneDevice in microphoneDevices {
-            NSLog("+ \(microphoneDevice.name)")
-        }
     }
 
 }
