@@ -21,6 +21,13 @@ func microphoneDevice(_ device: MicrophoneDevice, stateChangedTo enabled: Bool) 
 }
 ```
 
+### Sandboxing
+
+Sandboxed applications using `Monitored.framework` will need to enable the following entitlements:
+
+1. `com.apple.security.device.camera` for detecting camera devices
+2. `com.apple.security.device.audio-input` for detecting microphone devices 
+
 ## Installation
 
 ### Carthage
