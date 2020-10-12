@@ -30,7 +30,7 @@ public class MicrophoneDevice {
             if isWatched {
                 self.watch(property: .deviceIsRunningSomewhere, listener: microphonePropertyChanged(numberOfAddresses:addresses:))
             } else {
-                self.unwatch()
+                self.unwatch(property: .deviceIsRunningSomewhere)
             }
         }
     }

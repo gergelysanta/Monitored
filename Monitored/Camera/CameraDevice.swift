@@ -36,7 +36,7 @@ public class CameraDevice {
             if isWatched {
                 self.watch(property: .deviceIsRunningSomewhere, listener: cameraPropertyChanged(numberOfAddresses:addresses:))
             } else {
-                self.unwatch()
+                self.unwatch(property: .deviceIsRunningSomewhere)
             }
         }
     }
