@@ -33,6 +33,18 @@ extension CameraDevice {
         case streamConfiguration
         case deviceMaster
 
+        var isWatchable: Bool {
+            switch self {
+            case .deviceIsAlive,
+                 .deviceHasChanged,
+                 .deviceIsRunning,
+                 .deviceIsRunningSomewhere:
+                return true
+            default:
+                return false
+            }
+        }
+
         /// Property value in CoreMediaIO framework
         internal var cmioValue: Int {
             switch self {
@@ -170,8 +182,11 @@ extension CameraDevice {
     ///   - property: property
     ///   - listener: block to be called when property changes
     internal func watch(property: Property, listener: CMIOObjectPropertyListenerBlock!) {
+        guard property.isWatchable else { return }
+
         // Remove old listener if exists
-        unwatch()
+        unwatch(property: property)
+
         // Register listener
         var propertyAddress = CMIOObjectPropertyAddress(
             mSelector: CMIOObjectPropertySelector(property.cmioValue),
@@ -179,14 +194,23 @@ extension CameraDevice {
             mElement: CMIOObjectPropertyElement(kCMIOObjectPropertyElementWildcard)
         )
         CMIOObjectAddPropertyListenerBlock(self.identifier, &propertyAddress, self.watchCameraQueue, listener)
-        propertyWatcher = (propertyAddress, listener)
+        propertyWatcher[property] = (propertyAddress, listener)
     }
 
-    internal func unwatch() {
-        guard let watcher = propertyWatcher else { return }
+    /// Stop watching all CoreMediaIO properties
+    internal func unwatchAll() {
+        for property in propertyWatcher.keys {
+            unwatch(property: property)
+        }
+    }
+
+    /// Stop watching CoreMediaIO property
+    /// - Parameter property: property
+    internal func unwatch(property: Property) {
+        guard let watcher = propertyWatcher[property] else { return }
         var oldAddress = watcher.0
         CMIOObjectRemovePropertyListenerBlock(self.identifier, &oldAddress, self.watchCameraQueue, watcher.1)
-        propertyWatcher = nil
+        propertyWatcher[property] = nil
     }
 
     /// Get generic CoreMediaIO property. Call this method from property watcher blocks

@@ -41,7 +41,7 @@ public class CameraDevice {
         }
     }
 
-    internal var propertyWatcher: (CMIOObjectPropertyAddress, CMIOObjectPropertyListenerBlock)?
+    internal var propertyWatcher = [Property: (CMIOObjectPropertyAddress, CMIOObjectPropertyListenerBlock)]()
 
     /// Object which receives camera state change reports
     public weak var delegate: MonitoredDelegate?

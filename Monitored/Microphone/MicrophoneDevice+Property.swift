@@ -16,6 +16,15 @@ extension MicrophoneDevice {
         case manufacturer
         case deviceIsRunningSomewhere
 
+        var isWatchable: Bool {
+            switch self {
+            case .deviceIsRunningSomewhere:
+                return true
+            default:
+                return false
+            }
+        }
+
         /// Property value in CoreAudio framework
         internal var audioValue: UInt32 {
             switch self {
@@ -59,8 +68,11 @@ extension MicrophoneDevice {
     ///   - property: property
     ///   - listener: block to be called when property changes
     internal func watch(property: Property, listener: AudioObjectPropertyListenerBlock!) {
+        guard property.isWatchable else { return }
+
         // Remove old listener if exists
-        unwatch()
+        unwatch(property: property)
+
         // Register listener
         var propertyAddress = AudioObjectPropertyAddress(
             mSelector: AudioObjectPropertySelector(property.audioValue),
@@ -68,14 +80,23 @@ extension MicrophoneDevice {
             mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementWildcard)
         )
         AudioObjectAddPropertyListenerBlock(self.identifier, &propertyAddress, self.watchMicrophoneQueue, listener)
-        propertyWatcher = (propertyAddress, listener)
+        propertyWatcher[property] = (propertyAddress, listener)
     }
 
-    internal func unwatch() {
-        guard let watcher = propertyWatcher else { return }
+    /// Stop watching all CoreAudio properties
+    internal func unwatchAll() {
+        for property in propertyWatcher.keys {
+            unwatch(property: property)
+        }
+    }
+
+    /// Stop watching CoreAudio property
+    /// - Parameter property: property
+    internal func unwatch(property: Property) {
+        guard let watcher = propertyWatcher[property] else { return }
         var oldAddress = watcher.0
         AudioObjectRemovePropertyListenerBlock(self.identifier, &oldAddress, self.watchMicrophoneQueue, watcher.1)
-        propertyWatcher = nil
+        propertyWatcher[property] = nil
     }
 
     /// Get generic CoreAudio property. Call this method from property watcher blocks

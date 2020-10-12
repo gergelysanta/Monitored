@@ -35,7 +35,7 @@ public class MicrophoneDevice {
         }
     }
 
-    internal var propertyWatcher: (AudioObjectPropertyAddress, AudioObjectPropertyListenerBlock)?
+    internal var propertyWatcher = [Property: (AudioObjectPropertyAddress, AudioObjectPropertyListenerBlock)]()
 
     /// Object which receives microphone state change reports
     public weak var delegate: MonitoredDelegate?
