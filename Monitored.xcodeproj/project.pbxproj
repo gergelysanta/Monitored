@@ -37,13 +37,14 @@
 		EC3603F824FC2CB6009D8380 /* MicrophoneDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrophoneDevice.swift; sourceTree = "<group>"; };
 		ECCA0AEE24C3661000A068E1 /* Monitored.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Monitored.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECCA0AF124C3661000A068E1 /* Monitored.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Monitored.h; sourceTree = "<group>"; };
-		ECCA0AF224C3661000A068E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECCA0AF724C3661000A068E1 /* MonitoredTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MonitoredTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECCA0AFC24C3661000A068E1 /* MonitoredTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoredTests.swift; sourceTree = "<group>"; };
-		ECCA0AFE24C3661000A068E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECCA0B0924C3669400A068E1 /* CameraDevice+Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CameraDevice+Property.swift"; sourceTree = "<group>"; };
 		ECCA0B0A24C3669400A068E1 /* CameraDevice+Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CameraDevice+Location.swift"; sourceTree = "<group>"; };
 		ECCA0B0B24C3669400A068E1 /* CameraDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraDevice.swift; sourceTree = "<group>"; };
+		ECDFA06125CEDDF8008B8589 /* InfoTests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoTests.plist; sourceTree = "<group>"; };
+		ECDFA06225CEDDF8008B8589 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECDFA06525CEDE7E008B8589 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		ECEE46E324EBB7C900D07BD4 /* MonitoredWatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitoredWatcher.swift; sourceTree = "<group>"; };
 		ECEE46ED24EBB82D00D07BD4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		ECEE46EE24EBB83D00D07BD4 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -83,6 +84,8 @@
 				ECCA0AF024C3661000A068E1 /* Monitored */,
 				ECEE46ED24EBB82D00D07BD4 /* README.md */,
 				ECEE46EE24EBB83D00D07BD4 /* LICENSE */,
+				ECDFA06525CEDE7E008B8589 /* Package.swift */,
+				ECDFA06025CEDDF8008B8589 /* Support */,
 				ECCA0AFB24C3661000A068E1 /* MonitoredTests */,
 				ECCA0AEF24C3661000A068E1 /* Products */,
 			);
@@ -102,20 +105,20 @@
 			children = (
 				ECEE46E324EBB7C900D07BD4 /* MonitoredWatcher.swift */,
 				ECCA0AF124C3661000A068E1 /* Monitored.h */,
-				ECCA0AF224C3661000A068E1 /* Info.plist */,
 				ECCA0B0824C3669400A068E1 /* Camera */,
 				EC3603F624FC2CB6009D8380 /* Microphone */,
 			);
-			path = Monitored;
+			name = Monitored;
+			path = Sources/Monitored;
 			sourceTree = "<group>";
 		};
 		ECCA0AFB24C3661000A068E1 /* MonitoredTests */ = {
 			isa = PBXGroup;
 			children = (
 				ECCA0AFC24C3661000A068E1 /* MonitoredTests.swift */,
-				ECCA0AFE24C3661000A068E1 /* Info.plist */,
 			);
-			path = MonitoredTests;
+			name = MonitoredTests;
+			path = Tests/MonitoredTests;
 			sourceTree = "<group>";
 		};
 		ECCA0B0824C3669400A068E1 /* Camera */ = {
@@ -126,6 +129,15 @@
 				ECCA0B0A24C3669400A068E1 /* CameraDevice+Location.swift */,
 			);
 			path = Camera;
+			sourceTree = "<group>";
+		};
+		ECDFA06025CEDDF8008B8589 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				ECDFA06125CEDDF8008B8589 /* InfoTests.plist */,
+				ECDFA06225CEDDF8008B8589 /* Info.plist */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,7 +432,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Monitored/Info.plist;
+				INFOPLIST_FILE = Support/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -445,7 +457,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Monitored/Info.plist;
+				INFOPLIST_FILE = Support/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -467,7 +479,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Y9N34UZ32J;
-				INFOPLIST_FILE = MonitoredTests/Info.plist;
+				INFOPLIST_FILE = Support/InfoTests.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -486,7 +498,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Y9N34UZ32J;
-				INFOPLIST_FILE = MonitoredTests/Info.plist;
+				INFOPLIST_FILE = Support/InfoTests.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
