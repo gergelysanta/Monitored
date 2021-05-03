@@ -148,8 +148,7 @@ extension CameraDevice {
             case .deviceIsAlive,
                  .deviceIsRunning,
                  .deviceIsRunningSomewhere,
-                 .deviceCanBeDefaultDevice,
-                 .hogMode:
+                 .deviceCanBeDefaultDevice:
                 return data.assumingMemoryBound(to: UInt32.self).pointee != 0
 
             case .streams:
@@ -158,7 +157,8 @@ extension CameraDevice {
             case .streamConfiguration:
                 return data.assumingMemoryBound(to: CMIODeviceStreamConfiguration.self).pointee
 
-            case .deviceMaster:
+            case .hogMode,
+                 .deviceMaster:
                 return data.assumingMemoryBound(to: pid_t.self).pointee
             }
         }

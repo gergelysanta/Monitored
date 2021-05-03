@@ -15,6 +15,7 @@ extension MicrophoneDevice {
         case name
         case manufacturer
         case deviceIsRunningSomewhere
+        case hogMode
 
         var isWatchable: Bool {
             switch self {
@@ -37,6 +38,20 @@ extension MicrophoneDevice {
             case .deviceIsRunningSomewhere:
                 // A UInt32 where 1 means that the AudioDevice is running in at least one process on the system and 0 means that it isn't running at all.
                 return kAudioDevicePropertyDeviceIsRunningSomewhere
+            case .hogMode:
+                // A pid_t indicating the process that currently owns exclusive access to the
+                // AudioDevice or a value of -1 indicating that the device is currently
+                // available to all processes. If the AudioDevice is in a non-mixable mode,
+                // the HAL will automatically take hog mode on behalf of the first process to
+                // start an IOProc.
+                // Note that when setting this property, the value passed in is ignored. If
+                // another process owns exclusive access, that remains unchanged. If the
+                // current process owns exclusive access, it is released and made available to
+                // all processes again. If no process has exclusive access (meaning the current
+                // value is -1), this process gains ownership of exclusive access.  On return,
+                // the pid_t pointed to by inPropertyData will contain the new value of the//
+                // property.
+                return kAudioDevicePropertyHogMode
             }
         }
 
@@ -47,6 +62,8 @@ extension MicrophoneDevice {
                 return data.assumingMemoryBound(to: CFString.self).pointee as String
             case .deviceIsRunningSomewhere:
                 return data.assumingMemoryBound(to: UInt32.self).pointee != 0
+            case .hogMode:
+                return data.assumingMemoryBound(to: pid_t.self).pointee
             }
         }
     }

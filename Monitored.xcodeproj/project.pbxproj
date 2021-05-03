@@ -72,8 +72,8 @@
 		EC3603F624FC2CB6009D8380 /* Microphone */ = {
 			isa = PBXGroup;
 			children = (
-				EC3603F724FC2CB6009D8380 /* MicrophoneDevice+Property.swift */,
 				EC3603F824FC2CB6009D8380 /* MicrophoneDevice.swift */,
+				EC3603F724FC2CB6009D8380 /* MicrophoneDevice+Property.swift */,
 			);
 			path = Microphone;
 			sourceTree = "<group>";
