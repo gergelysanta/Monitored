@@ -68,8 +68,8 @@ public class CameraDevice {
 
         // We need to wait until we get some data
         repeat {
-            if deviceRefs != nil {
-                free(deviceRefs)
+            if let devRefs = deviceRefs {
+                free(devRefs)
                 deviceRefs = nil
             }
             deviceRefs = malloc(Int(dataSize))
@@ -86,7 +86,9 @@ public class CameraDevice {
                 newDevices.append(device)
             }
         }
-        free(deviceRefs)
+        if let devRefs = deviceRefs {
+            free(devRefs)
+        }
 
         return newDevices
     }
