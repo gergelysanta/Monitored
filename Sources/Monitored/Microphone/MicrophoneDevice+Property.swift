@@ -93,8 +93,8 @@ extension MicrophoneDevice {
         // Register listener
         var propertyAddress = AudioObjectPropertyAddress(
             mSelector: AudioObjectPropertySelector(property.audioValue),
-            mScope: AudioObjectPropertyScope(kAudioObjectPropertyScopeWildcard),
-            mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementWildcard)
+            mScope: AudioObjectPropertyScope(kAudioObjectPropertyScopeGlobal),
+            mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementMaster)
         )
         AudioObjectAddPropertyListenerBlock(self.identifier, &propertyAddress, self.watchMicrophoneQueue, listener)
         propertyWatcher[property] = (propertyAddress, listener)

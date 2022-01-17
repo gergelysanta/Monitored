@@ -190,8 +190,8 @@ extension CameraDevice {
         // Register listener
         var propertyAddress = CMIOObjectPropertyAddress(
             mSelector: CMIOObjectPropertySelector(property.cmioValue),
-            mScope: CMIOObjectPropertyScope(kCMIOObjectPropertyScopeWildcard),
-            mElement: CMIOObjectPropertyElement(kCMIOObjectPropertyElementWildcard)
+            mScope: CMIOObjectPropertyScope(kCMIOObjectPropertyScopeGlobal),
+            mElement: CMIOObjectPropertyElement(kCMIOObjectPropertyElementMaster)
         )
         CMIOObjectAddPropertyListenerBlock(self.identifier, &propertyAddress, self.watchCameraQueue, listener)
         propertyWatcher[property] = (propertyAddress, listener)
