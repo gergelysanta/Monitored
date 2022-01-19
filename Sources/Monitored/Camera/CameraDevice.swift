@@ -102,7 +102,9 @@ public class CameraDevice {
             guard let propertyAddress = addresses?.advanced(by: index).pointee else { return }
             if propertyAddress.mSelector == CMIOObjectPropertySelector(kCMIODevicePropertyDeviceIsRunningSomewhere) {
                 // kCMIODevicePropertyDeviceIsRunningSomewhere changed
-                self.isOn = (self.get(propertyAddress: propertyAddress) as? Bool) ?? false
+                DispatchQueue.main.sync {
+                    self.isOn = (self.get(propertyAddress: propertyAddress) as? Bool) ?? false
+                }
             }
         }
     }
