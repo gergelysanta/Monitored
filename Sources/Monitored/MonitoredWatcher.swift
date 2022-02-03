@@ -33,8 +33,10 @@ extension MonitoredDelegate {
 
 public final class MonitoredWatcher {
 
-    /// Singleton instance
-    public static let shared = MonitoredWatcher()
+    public enum DeviceType: Int8 {
+        case camera
+        case microphone
+    }
 
     /// Dictionary of detected camera devices
     public private(set) var cameraDevices: [CameraDevice] = []
@@ -74,10 +76,18 @@ public final class MonitoredWatcher {
         }
     }
 
-    /// This is a singleton object accessible through SameraWatcher.shared, creating other instances is not allowed
-    private init() {
-        cameraDevices = CameraDevice.getDevices(delegatingTo: delegate)
-        microphoneDevices = MicrophoneDevice.getDevices(delegatingTo: delegate)
+    init(watchDevices: [DeviceType] = [.camera, .microphone]) {
+        let watch = watchDevices.isEmpty ? [.camera, .microphone] : watchDevices
+        if watch.contains(.camera) {
+            cameraDevices = CameraDevice.getDevices(delegatingTo: delegate)
+        }
+        if watch.contains(.microphone) {
+            microphoneDevices = MicrophoneDevice.getDevices(delegatingTo: delegate)
+        }
+    }
+
+    deinit {
+        stop()
     }
 
 }

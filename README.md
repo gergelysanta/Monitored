@@ -5,8 +5,9 @@ Monitored is a macOS framework for detecting when you're being monitored. It det
 Monitored provides a singleton object for monitoring events from camera and from microphones. Just set it up to delegate events to your object and start the watcher:
 
 ```swift
-MonitoredWatcher.shared.delegate = self
-MonitoredWatcher.shared.start()
+let watcher = MonitoredWatcher() 
+watcher.delegate = self
+watcher.start()
 ```
 
 You'll receive camera and microphone state reports through `MonitoredDelegate` delegate methods:
