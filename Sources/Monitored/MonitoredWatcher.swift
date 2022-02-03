@@ -44,14 +44,20 @@ public final class MonitoredWatcher {
     /// Dictionary of detected microphone devices
     public private(set) var microphoneDevices: [MicrophoneDevice] = []
 
+    /// Are the devices actually watched?
+    public var isWatching: Bool {
+        return (cameraDevices.filter({ $0.isWatched }).count > 0) ||
+               (microphoneDevices.filter({ $0.isWatched }).count > 0)
+    }
+
     /// Object which receives camera state change reports
     public weak var delegate: MonitoredDelegate? {
         didSet {
             for camera in cameraDevices {
-                camera.delegate = delegate
+                camera.delegate = camera.isWatched ? delegate : nil
             }
             for microphone in microphoneDevices {
-                microphone.delegate = delegate
+                microphone.delegate = microphone.isWatched ? delegate : nil
             }
         }
     }
@@ -59,9 +65,11 @@ public final class MonitoredWatcher {
     /// Start device watching
     public func start() {
         for camera in cameraDevices {
+            camera.delegate = delegate
             camera.isWatched = true
         }
         for microphone in microphoneDevices {
+            microphone.delegate = delegate
             microphone.isWatched = true
         }
     }
@@ -69,9 +77,11 @@ public final class MonitoredWatcher {
     /// Stop device watching
     public func stop() {
         for camera in cameraDevices {
+            camera.delegate = nil
             camera.isWatched = false
         }
         for microphone in microphoneDevices {
+            microphone.delegate = nil
             microphone.isWatched = false
         }
     }
