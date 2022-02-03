@@ -31,12 +31,16 @@ public class CameraDevice {
         }
     }
 
+    /// Device property to be watched
+    private let watchProperty = Property.deviceIsRunningSomewhere
+
+    /// Is this device watched?
     public var isWatched: Bool = false {
         didSet {
             if isWatched {
-                self.watch(property: .deviceIsRunningSomewhere, listener: cameraPropertyChanged(numberOfAddresses:addresses:))
+                self.watch(property: watchProperty, listener: cameraPropertyChanged(numberOfAddresses:addresses:))
             } else {
-                self.unwatch(property: .deviceIsRunningSomewhere)
+                self.unwatch(property: watchProperty)
             }
         }
     }
@@ -100,8 +104,8 @@ public class CameraDevice {
     private func cameraPropertyChanged(numberOfAddresses: UInt32, addresses: UnsafePointer<CMIOObjectPropertyAddress>?) {
         for index in 0..<Int(numberOfAddresses) {
             guard let propertyAddress = addresses?.advanced(by: index).pointee else { return }
-            if propertyAddress.mSelector == CMIOObjectPropertySelector(kCMIODevicePropertyDeviceIsRunningSomewhere) {
-                // kCMIODevicePropertyDeviceIsRunningSomewhere changed
+            if propertyAddress.mSelector == CMIOObjectPropertySelector(watchProperty.cmioValue) {
+                // Watched property changed
                 DispatchQueue.main.sync {
                     self.isOn = (self.get(propertyAddress: propertyAddress) as? Bool) ?? false
                 }
@@ -118,7 +122,7 @@ public class CameraDevice {
 
         self.name = get(property: .name) as? String ?? "?"
         self.location = getLocation()
-        self.isOn = (get(property: .deviceIsRunningSomewhere) as? Bool) ?? false
+        self.isOn = (get(property: watchProperty) as? Bool) ?? false
     }
 
 }

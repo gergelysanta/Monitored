@@ -25,12 +25,16 @@ public class MicrophoneDevice {
         }
     }
 
+    /// Device property to be watched
+    private let watchProperty = Property.deviceIsRunningSomewhere
+
+    /// Is this device watched?
     public var isWatched: Bool = false {
         didSet {
             if isWatched {
-                self.watch(property: .deviceIsRunningSomewhere, listener: microphonePropertyChanged(numberOfAddresses:addresses:))
+                self.watch(property: watchProperty, listener: microphonePropertyChanged(numberOfAddresses:addresses:))
             } else {
-                self.unwatch(property: .deviceIsRunningSomewhere)
+                self.unwatch(property: watchProperty)
             }
         }
     }
@@ -116,8 +120,8 @@ public class MicrophoneDevice {
     private func microphonePropertyChanged(numberOfAddresses: UInt32, addresses: UnsafePointer<AudioObjectPropertyAddress>?) {
         for index in 0..<Int(numberOfAddresses) {
             guard let propertyAddress = addresses?.advanced(by: index).pointee else { return }
-            if propertyAddress.mSelector == AudioObjectPropertySelector(kAudioDevicePropertyDeviceIsRunningSomewhere) {
-                // kAudioDevicePropertyDeviceIsRunningSomewhere changed
+            if propertyAddress.mSelector == AudioObjectPropertySelector(watchProperty.audioValue) {
+                // Watched property changed
                 DispatchQueue.main.sync {
                     self.isOn = (self.get(propertyAddress: propertyAddress) as? Bool) ?? false
                 }
@@ -133,7 +137,7 @@ public class MicrophoneDevice {
         self.watchMicrophoneQueue = DispatchQueue(label: "WatchMicrophoneQueue.\(identifier)")
 
         self.name = get(property: .name) as? String ?? "?"
-        self.isOn = (get(property: .deviceIsRunningSomewhere) as? Bool) ?? false
+        self.isOn = (get(property: watchProperty) as? Bool) ?? false
     }
 
 }
