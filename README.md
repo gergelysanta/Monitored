@@ -1,8 +1,8 @@
-Monitored is a macOS framework for detecting when you're being monitored. It detect state changes on camera and microphone devices.
+Monitored is a macOS framework for detecting when are any of your cameras or microphones active. It detect state changes on these devices.
 
 ## Usage
 
-Monitored provides a singleton object for monitoring events from camera and from microphones. Just set it up to delegate events to your object and start the watcher:
+Monitored provides a watcher object for monitoring events from camera and from microphones. Just set it up to delegate events to your object and start the watcher:
 
 ```swift
 let watcher = MonitoredWatcher() 
