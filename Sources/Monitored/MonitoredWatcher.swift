@@ -86,7 +86,7 @@ public final class MonitoredWatcher {
         }
     }
 
-    init(watchDevices: [DeviceType] = [.camera, .microphone], delegate: MonitoredDelegate? = nil) {
+    public init(watchDevices: [DeviceType] = [.camera, .microphone], delegate: MonitoredDelegate? = nil) {
         let watch = watchDevices.isEmpty ? [.camera, .microphone] : watchDevices
         self.delegate = delegate
         if watch.contains(.camera) {
