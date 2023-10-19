@@ -73,9 +73,9 @@ extension MicrophoneDevice {
     /// - Returns: property data
     public func get(property: Property) -> Any? {
         let propertyAddress = AudioObjectPropertyAddress(
-            mSelector: AudioObjectPropertySelector(property.audioValue),
-            mScope: AudioObjectPropertyScope(kAudioObjectPropertyScopeWildcard),
-            mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementWildcard)
+            mSelector: property.audioValue,
+            mScope: kAudioObjectPropertyScopeWildcard,
+            mElement: kAudioObjectPropertyElementWildcard
         )
         return get(property: property, propertyAddress: propertyAddress)
     }
@@ -92,9 +92,9 @@ extension MicrophoneDevice {
 
         // Register listener
         var propertyAddress = AudioObjectPropertyAddress(
-            mSelector: AudioObjectPropertySelector(property.audioValue),
-            mScope: AudioObjectPropertyScope(kAudioObjectPropertyScopeGlobal),
-            mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementMaster)
+            mSelector: property.audioValue,
+            mScope: kAudioObjectPropertyScopeGlobal,
+            mElement: kAudioObjectPropertyElementMaster
         )
         AudioObjectAddPropertyListenerBlock(self.identifier, &propertyAddress, self.watchMicrophoneQueue, listener)
         propertyWatcher[property] = (propertyAddress, listener)

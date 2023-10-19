@@ -171,8 +171,8 @@ extension CameraDevice {
     public func get(property: Property) -> Any? {
         let propertyAddress = CMIOObjectPropertyAddress(
             mSelector: CMIOObjectPropertySelector(property.cmioValue),
-            mScope: CMIOObjectPropertyScope(kCMIOObjectPropertyScopeWildcard),
-            mElement: CMIOObjectPropertyElement(kCMIOObjectPropertyElementWildcard)
+            mScope: kCMIOObjectPropertyScopeWildcard,
+            mElement: kCMIOObjectPropertyElementWildcard
         )
         return get(property: property, propertyAddress: propertyAddress)
     }

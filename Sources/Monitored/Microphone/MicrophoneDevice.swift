@@ -57,9 +57,9 @@ public class MicrophoneDevice {
 
         // Get data size required for device list
         var propertyAddress = AudioObjectPropertyAddress(
-            mSelector: AudioObjectPropertySelector(kAudioHardwarePropertyDevices),
-            mScope: AudioObjectPropertyScope(kAudioObjectPropertyScopeGlobal),
-            mElement: AudioObjectPropertyElement(kAudioObjectPropertyElementMaster)
+            mSelector: kAudioHardwarePropertyDevices,
+            mScope: kAudioObjectPropertyScopeGlobal,
+            mElement: kAudioObjectPropertyElementMaster
         )
         _ = AudioObjectGetPropertyDataSize(AudioObjectID(kAudioObjectSystemObject), &propertyAddress, 0, nil, &dataSize)
 
@@ -83,9 +83,9 @@ public class MicrophoneDevice {
 
                 // Get the input stream configuration of the device. It's a list of audio buffers.
                 var streamPropertyAddress = AudioObjectPropertyAddress(
-                    mSelector: AudioObjectPropertySelector(kAudioDevicePropertyStreamConfiguration),
-                    mScope: AudioObjectPropertyScope(kAudioDevicePropertyScopeInput),
-                    mElement: AudioObjectPropertyElement(0)
+                    mSelector: kAudioDevicePropertyStreamConfiguration,
+                    mScope: kAudioDevicePropertyScopeInput,
+                    mElement: kAudioObjectPropertyElementMaster
                 )
                 _ = AudioObjectGetPropertyDataSize(deviceID, &streamPropertyAddress, 0, nil, &streamPropertySize)
 
@@ -120,7 +120,7 @@ public class MicrophoneDevice {
     private func microphonePropertyChanged(numberOfAddresses: UInt32, addresses: UnsafePointer<AudioObjectPropertyAddress>?) {
         for index in 0..<Int(numberOfAddresses) {
             guard let propertyAddress = addresses?.advanced(by: index).pointee else { return }
-            if propertyAddress.mSelector == AudioObjectPropertySelector(watchProperty.audioValue) {
+            if propertyAddress.mSelector == watchProperty.audioValue {
                 // Watched property changed
                 DispatchQueue.main.sync {
                     self.isOn = (self.get(propertyAddress: propertyAddress) as? Bool) ?? false
